@@ -6,14 +6,20 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-// Add Ocelot
-builder.Services.AddOcelot();
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
+
+
+builder.Services.AddSwaggerGen();
+// Add Ocelot
+builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
+
+// Add services
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddOcelot();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
@@ -27,18 +33,25 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline test.
+// Use middlewares in recommended order
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.MapGet("/version", () => "Deployed version: 1.0.1 - CORS updated-Piyush-CI-Gatway-2");
+
 app.UseHttpsRedirection();
 app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthorization();
+
+// Optional version endpoint for build verification
+app.MapGet("/version", () => "Deployed version: 1.0.1 - CORS updated-Piyush-CI-Gatway-2");
+
+// Use Ocelot middleware to handle routing
 await app.UseOcelot();
-app.MapControllers();
+
+// Only needed if you have other controllers in API Gateway project
+// app.MapControllers();
 
 app.Run();
