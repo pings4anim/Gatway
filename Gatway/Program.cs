@@ -32,7 +32,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.MapGet("/version", () => "Deployed version: 1.0.1 - CORS updated-Piyush-CI-Gatway-1");
+app.MapGet("/version", () => "Deployed version: 1.0.1 - CORS updated-Piyush-CI-Gatway-2");
 app.UseHttpsRedirection();
 app.UseCors("AllowSpecificOrigin");
 
