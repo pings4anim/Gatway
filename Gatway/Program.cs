@@ -12,7 +12,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 // Add Ocelot
 builder.Services.AddOcelot();
-
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
@@ -37,7 +38,7 @@ app.UseHttpsRedirection();
 app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthorization();
-
-app.MapControllers();
 await app.UseOcelot();
+app.MapControllers();
+
 app.Run();

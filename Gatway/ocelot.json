@@ -9,7 +9,7 @@
           "Port": 443
         }
       ],
-      "UpstreamPathTemplate": "/api1/weather",
+      "UpstreamPathTemplate": "/weather",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
