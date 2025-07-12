@@ -26,6 +26,6 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:5000"
+    "BaseUrl": "https://gatway-d4bxdkbfgbahdyc4.canadacentral-01.azurewebsites.net"
   }
 }
