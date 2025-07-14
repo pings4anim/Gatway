@@ -13,15 +13,15 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/Products",
+      "DownstreamPathTemplate": "/WeatherForecast/PersonCsvSample",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "apicicd-ergjgnh7bfg2c8hf.canadacentral-01.azurewebsites.net",
+          "Host": "https://apicicd-ergjgnh7bfg2c8hf.canadacentral-01.azurewebsites.net",
           "Port": 443
         }
       ],
-      "UpstreamPathTemplate": "/api2/products",
+      "UpstreamPathTemplate": "/CSVSample",
       "UpstreamHttpMethod": [ "GET" ]
     }
   ],
